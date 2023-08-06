@@ -3,13 +3,14 @@ package router
 import (
 	"net/http"
 
-	"github.com/EugeneGpil/router/app"
+	"github.com/EugeneGpil/router/app/modules/add"
+	"github.com/EugeneGpil/router/app/modules/define"
 )
 
 func AddRoute(method string, url string, handler func(http.ResponseWriter, *http.Request)) {
-	app.AddRoute(method, url, handler)
+	add.AddRoute(method, url, handler)
 }
 
 func DefineRoutes(mux *http.ServeMux) {
-	app.DefineRoutes(mux)
+	define.DefineRoutes(mux)
 }
