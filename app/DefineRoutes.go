@@ -8,37 +8,36 @@ import (
 	"github.com/EugeneGpil/router/app/types"
 )
 
-var mux *http.ServeMux
+func DefineRoutes(mux *http.ServeMux) {
+	groupedByUrlRoutes := getGroupedByUrlRoutes()
 
-func DefineRoutes(m *http.ServeMux) {
-	groupedByUrlRoutesWithDifferentHttpMethods := getGroupedByUrlRoutesWithDifferentHttpMethods()
-	mux = m
-
-	for url, routes := range groupedByUrlRoutesWithDifferentHttpMethods {
-		url1, url2 := getFormattedUrls.Run(url)
-
-		addHandlers(url1, routes)
-		addHandlers(url2, routes)
-	}
+	defineRoutes(groupedByUrlRoutes, mux)
 }
 
-func getGroupedByUrlRoutesWithDifferentHttpMethods() map[string][]types.Route {
-	groupedByUrlRoutesWithDifferentHttpMethods := make(map[string][]types.Route)
+func getGroupedByUrlRoutes() map[string][]types.Route {
+	groupedByUrlRoutes := make(map[string][]types.Route)
 
 	for _, currentRoute := range globals.Routes {
-		if _, isset := groupedByUrlRoutesWithDifferentHttpMethods[currentRoute.Url]; !isset {
-			groupedByUrlRoutesWithDifferentHttpMethods[currentRoute.Url] = []types.Route{}
+		if _, isset := groupedByUrlRoutes[currentRoute.Url]; !isset {
+			groupedByUrlRoutes[currentRoute.Url] = []types.Route{}
 		}
-		appended := append(groupedByUrlRoutesWithDifferentHttpMethods[currentRoute.Url], currentRoute)
-		groupedByUrlRoutesWithDifferentHttpMethods[currentRoute.Url] = appended
+		appended := append(groupedByUrlRoutes[currentRoute.Url], currentRoute)
+		groupedByUrlRoutes[currentRoute.Url] = appended
 	}
 
-	return groupedByUrlRoutesWithDifferentHttpMethods
+	return groupedByUrlRoutes
 }
 
-func defineRouteMap()
+func defineRoutes(groupedByUrlRoutes map[string][]types.Route, mux *http.ServeMux) {
+	for url, routes := range groupedByUrlRoutes {
+		url1, url2 := getFormattedUrls.Run(url)
 
-func addHandlers(url string, routes []types.Route) {
+		addRoutes(url1, routes, mux)
+		addRoutes(url2, routes, mux)
+	}
+}
+
+func addRoutes(url string, routes []types.Route, mux *http.ServeMux) {
 	mux.HandleFunc(url, func(writer http.ResponseWriter, request *http.Request) {
 		for _, route := range routes {
 			if request.Method == route.Method {
