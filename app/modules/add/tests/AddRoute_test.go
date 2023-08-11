@@ -31,13 +31,13 @@ func Test_should_add_route(t *testing.T) {
 		t.Fatalf(`route.Url = %q, want match for %q`, route.Url, url)
 	}
 
-	if route.Handler == nil {
+	if route.Callback == nil {
 		t.Fatal(`route.Handler is nil`)
 	}
 
 	testResponseWriter := test.ResponseWriter{}
 
-	route.Handler(&testResponseWriter, nil)
+	route.Callback(&testResponseWriter, nil)
 
 	responseMessage := testResponseWriter.GetMessages()[0]
 
