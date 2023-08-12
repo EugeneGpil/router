@@ -2,7 +2,7 @@ package methods
 
 import (
 	"github.com/EugeneGpil/router/app/ship"
-	"github.com/EugeneGpil/router/app/types"
+	"github.com/EugeneGpil/router/app/ship/types"
 )
 
 func GetGroupedByUrlRoutes() map[string][]types.Route {

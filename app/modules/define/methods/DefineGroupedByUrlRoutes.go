@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/EugeneGpil/getFormattedUrls"
-	"github.com/EugeneGpil/router/app/types"
+	"github.com/EugeneGpil/router/app/ship/types"
 )
 
 func DefineGroupedByUrlRoutes(groupedByUrlRoutes map[string][]types.Route, mux *http.ServeMux) {

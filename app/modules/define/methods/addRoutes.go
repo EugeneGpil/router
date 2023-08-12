@@ -3,7 +3,7 @@ package methods
 import (
 	"net/http"
 
-	"github.com/EugeneGpil/router/app/types"
+	"github.com/EugeneGpil/router/app/ship/types"
 )
 
 func addRoutes(url string, routes []types.Route, mux *http.ServeMux) {
