@@ -1,4 +1,4 @@
-package globals
+package ship
 
 import "github.com/EugeneGpil/router/app/types"
 
