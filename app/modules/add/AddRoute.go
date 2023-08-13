@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/EugeneGpil/router/app/ship/types"
+	"github.com/EugeneGpil/router/app/ship/vars"
 )
 
 func AddRoute(method string, url string, callback func(http.ResponseWriter, *http.Request)) {
@@ -16,5 +17,5 @@ func AddRoute(method string, url string, callback func(http.ResponseWriter, *htt
 		Callback: callback,
 	}
 
-	types.Routes = append(types.Routes, route)
+	vars.Routes.Add(route)
 }
