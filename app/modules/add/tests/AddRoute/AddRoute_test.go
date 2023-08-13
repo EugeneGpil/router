@@ -34,9 +34,7 @@ func addRoute() {
 func assertPrimitives() {
 	routes := routes.GetAll()
 
-	if count := len(routes); count != 1 {
-		testingTester.Fatalf(`routes count = %q, want match for %q`, count, 1)
-	}
+	tester.AssertLen(routes, 1)
 
 	route := routes[0]
 

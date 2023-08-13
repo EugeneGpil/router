@@ -34,8 +34,8 @@ func AssertNotNil(var1 interface{}) {
 	}
 }
 
-// func AssertLen(var1 interface{}, length int) {
-// 	if len := len(var1); len != length {
-// 		t.Fatalf(`routes count = %q, want match for %q`, len, length)
-// 	}
-// }
+func AssertLen(var1 interface{}, length int) {
+	if len := len(var1.([]string)); len != length {
+		t.Fatalf(`routes count = %q, want match for %q`, len, length)
+	}
+}
