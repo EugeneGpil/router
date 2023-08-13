@@ -12,10 +12,8 @@ import (
 
 var helloMessage = []byte("Hello")
 var url = ""
-var testingTester *testing.T
 
 func Test_should_add_route(t *testing.T) {
-	testingTester = t
 	tester.SetTester(t)
 
 	addRoute()
