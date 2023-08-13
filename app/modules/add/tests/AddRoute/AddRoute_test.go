@@ -7,7 +7,7 @@ import (
 
 	"github.com/EugeneGpil/router/app/modules/add"
 	"github.com/EugeneGpil/router/app/modules/test"
-	"github.com/EugeneGpil/router/app/ship/vars"
+	"github.com/EugeneGpil/router/app/ship/vars/routes"
 )
 
 var helloMessage = []byte("Hello")
@@ -31,7 +31,13 @@ func addRoute() {
 }
 
 func assertPrimitives() {
-	route := vars.Routes.GetAll()[0]
+	routes := routes.GetAll()
+
+	if count := len(routes); count != 1 {
+		tester.Fatalf(`routes count = %q, want match for %q`, count, 1)
+	}
+
+	route := routes[0]
 
 	if route.Method != http.MethodGet {
 		tester.Fatalf(`route.Method = %q, want match for %q`, route.Method, http.MethodGet)
@@ -49,7 +55,7 @@ func assertPrimitives() {
 func assertCallback() {
 	testResponseWriter := test.ResponseWriter{}
 
-	vars.Routes.GetAll()[0].Callback(&testResponseWriter, nil)
+	routes.GetAll()[0].Callback(&testResponseWriter, nil)
 
 	responseMessage := testResponseWriter.GetMessages()[0]
 
