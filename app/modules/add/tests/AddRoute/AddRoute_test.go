@@ -18,6 +18,8 @@ func Test_should_add_route(t *testing.T) {
 
 	addRoute()
 
+	assertPrimitives()
+
 	assertCallback()
 }
 

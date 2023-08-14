@@ -24,7 +24,7 @@ func AssertSame(var1 interface{}, var2 interface{}) {
 	}
 
 	if var1 != var2 {
-		t.Fatalf(`route.Url = %q, want match for %q`, var1, var2)
+		t.Fatalf(`var1 = %q, want match for %q`, var1, var2)
 	}
 }
 
@@ -35,7 +35,7 @@ func AssertNotNil(var1 interface{}) {
 }
 
 func AssertLen(var1 interface{}, length int) {
-	if len := len(var1.([]string)); len != length {
+	if len := reflect.ValueOf(var1).Len(); len != length {
 		t.Fatalf(`routes count = %q, want match for %q`, len, length)
 	}
 }
