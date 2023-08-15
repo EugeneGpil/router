@@ -1,5 +1,6 @@
 dev:
-	docker compose up --build --remove-orphans --detach --force-recreate
+	docker compose up --build --remove-orphans --detach --force-recreate;
+	code --folder-uri vscode-remote://attached-container+$$(printf "router-golang-1" | xxd -p)/var/www/back
 
 exec:
 	docker compose exec golang bash
