@@ -40,6 +40,7 @@ func assertPrimitives() {
 	tester.AssertSame(route.Method, http.MethodGet)
 	tester.AssertSame(route.Url, url)
 	tester.AssertNotNil(route.Callback)
+	tester.AssertLen(route.Middlewares, 0)
 }
 
 func assertCallback() {

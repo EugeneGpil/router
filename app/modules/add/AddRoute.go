@@ -8,14 +8,21 @@ import (
 	"github.com/EugeneGpil/router/app/ship/vars/routes"
 )
 
-func AddRoute(method string, url string, callback func(http.ResponseWriter, *http.Request)) {
+func AddRoute(
+	method string,
+	url string,
+	callback func(http.ResponseWriter, *http.Request),
+) types.Route {
 	trimmedUrl := strings.Trim(url, "/")
 
 	route := types.Route{
-		Method:   method,
-		Url:      trimmedUrl,
-		Callback: callback,
+		Method:      method,
+		Url:         trimmedUrl,
+		Callback:    callback,
+		Middlewares: []func(http.ResponseWriter, *http.Request){},
 	}
 
 	routes.Add(route)
+
+	return route
 }
