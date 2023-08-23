@@ -19,7 +19,7 @@ func AddRoute(
 		Method:      method,
 		Url:         trimmedUrl,
 		Callback:    callback,
-		Middlewares: []func(http.ResponseWriter, *http.Request){},
+		Middlewares: []func(http.ResponseWriter, *http.Request) bool{},
 	}
 
 	routes.Add(route)
