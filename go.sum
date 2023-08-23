@@ -1,2 +1,4 @@
 github.com/EugeneGpil/getFormattedUrls v0.1.0 h1:1lvL6rfRJY8xU0DQrypaHbdUgN/b6ACl5SXMf58sKIQ=
 github.com/EugeneGpil/getFormattedUrls v0.1.0/go.mod h1:qe8oqvDy0EDAb8prx4cdJGVxHT5L6+kotLjmqb+/w24=
+github.com/EugeneGpil/tester v0.0.1 h1:BhQK0/V66WnwhklnBYkdhBHOc60C2Yz9F6f8YdBUxhg=
+github.com/EugeneGpil/tester v0.0.1/go.mod h1:NMXHQcI+RHH36zBbS4AswGnHXvan8Lms89uW+gfYfzo=

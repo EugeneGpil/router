@@ -5,9 +5,8 @@ import (
 	"testing"
 
 	"github.com/EugeneGpil/router/app/modules/add"
-	"github.com/EugeneGpil/router/app/modules/test/types"
-	"github.com/EugeneGpil/router/app/modules/test/vars/tester"
 	"github.com/EugeneGpil/router/app/ship/vars/routes"
+	"github.com/EugeneGpil/tester"
 )
 
 var helloMessage = []byte("Hello")
@@ -44,7 +43,7 @@ func assertPrimitives() {
 }
 
 func assertCallback() {
-	testResponseWriter := types.ResponseWriter{}
+	testResponseWriter := tester.GetTestResponseWriter()
 
 	routes.GetAll()[0].Callback(&testResponseWriter, nil)
 

@@ -6,8 +6,7 @@ import (
 
 	"github.com/EugeneGpil/router/app/modules/add"
 	"github.com/EugeneGpil/router/app/modules/define"
-	"github.com/EugeneGpil/router/app/modules/test/types"
-	"github.com/EugeneGpil/router/app/modules/test/vars/tester"
+	"github.com/EugeneGpil/tester"
 
 	netUrl "net/url"
 )
@@ -45,7 +44,7 @@ func assertCallback() {
 
 	handler, _ := mux.Handler(&request)
 
-	writer := types.ResponseWriter{}
+	writer := tester.GetTestResponseWriter()
 
 	handler.ServeHTTP(writer, &request)
 
