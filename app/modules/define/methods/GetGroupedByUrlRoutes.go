@@ -12,7 +12,7 @@ func GetGroupedByUrlRoutes() map[string][]types.Route {
 		if _, isset := groupedByUrlRoutes[currentRoute.Url]; !isset {
 			groupedByUrlRoutes[currentRoute.Url] = []types.Route{}
 		}
-		appended := append(groupedByUrlRoutes[currentRoute.Url], currentRoute)
+		appended := append(groupedByUrlRoutes[currentRoute.Url], *currentRoute)
 		groupedByUrlRoutes[currentRoute.Url] = appended
 	}
 

@@ -12,17 +12,26 @@ func AddRoute(
 	method string,
 	url string,
 	callback func(http.ResponseWriter, *http.Request),
-) types.Route {
+) {
+	middlewares := make([]func(http.ResponseWriter, *http.Request) bool, 0)
+
+	AddRouteWitMiddlewares(method, url, callback, middlewares)
+}
+
+func AddRouteWitMiddlewares(
+	method string,
+	url string,
+	callback func(http.ResponseWriter, *http.Request),
+	middlewares []func(http.ResponseWriter, *http.Request) bool,
+) {
 	trimmedUrl := strings.Trim(url, "/")
 
 	route := types.Route{
 		Method:      method,
 		Url:         trimmedUrl,
 		Callback:    callback,
-		Middlewares: []func(http.ResponseWriter, *http.Request) bool{},
+		Middlewares: middlewares,
 	}
 
 	routes.Add(route)
-
-	return route
 }
