@@ -1,9 +1,11 @@
 package tests
 
-import "net/http"
+import (
+	"github.com/EugeneGpil/router/app/ship/types"
+)
 
-func GetMiddlewares(messages [][]byte) []func(writer http.ResponseWriter, request *http.Request) bool {
-	middlewares := make([]func(writer http.ResponseWriter, request *http.Request) bool, len(messages))
+func GetMiddlewares(messages [][]byte) []types.Middleware {
+	middlewares := make([]types.Middleware, len(messages))
 	for index, message := range messages {
 		middlewares[index] = GetMiddleware(message)
 	}

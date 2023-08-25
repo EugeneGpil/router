@@ -6,7 +6,6 @@ import (
 
 	"github.com/EugeneGpil/router/app/modules/add"
 	"github.com/EugeneGpil/router/app/modules/define"
-	"github.com/EugeneGpil/router/app/ship/types"
 	"github.com/EugeneGpil/router/app/ship/utils/tests"
 	"github.com/EugeneGpil/tester"
 
@@ -35,12 +34,10 @@ func addRoute() {
 		writer.Write(callbackMessage)
 	}
 
-	middleware1 := tests.GetMiddleware(middleware1Message)
-	middleware2 := tests.GetMiddleware(middleware2Message)
-	middlewares := []types.Middleware{
-		middleware1,
-		middleware2,
-	}
+	middlewares := tests.GetMiddlewares([][]byte{
+		middleware1Message,
+		middleware2Message,
+	})
 	add.AddRouteWitMiddlewares(http.MethodGet, url, callback, middlewares)
 }
 
