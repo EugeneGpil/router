@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/EugeneGpil/router/app/modules/add"
+	"github.com/EugeneGpil/router/app/ship/utils/tests"
 	"github.com/EugeneGpil/router/app/ship/vars/routes"
 	"github.com/EugeneGpil/tester"
 )
@@ -23,9 +24,7 @@ func Test_should_add_route(t *testing.T) {
 }
 
 func addRoute() {
-	callback := func(writer http.ResponseWriter, request *http.Request) {
-		writer.Write(helloMessage)
-	}
+	callback := tests.GetHttpHandler(helloMessage)
 
 	add.AddRoute(http.MethodGet, url, callback)
 }

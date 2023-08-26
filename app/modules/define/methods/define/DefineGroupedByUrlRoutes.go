@@ -1,4 +1,4 @@
-package methods
+package define
 
 import (
 	"net/http"

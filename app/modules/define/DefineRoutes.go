@@ -4,10 +4,11 @@ import (
 	"net/http"
 
 	"github.com/EugeneGpil/router/app/modules/define/methods"
+	internalDefine "github.com/EugeneGpil/router/app/modules/define/methods/define"
 )
 
 func DefineRoutes(mux *http.ServeMux) {
 	groupedByUrlRoutes := methods.GetGroupedByUrlRoutes()
 
-	methods.DefineGroupedByUrlRoutes(groupedByUrlRoutes, mux)
+	internalDefine.DefineGroupedByUrlRoutes(groupedByUrlRoutes, mux)
 }

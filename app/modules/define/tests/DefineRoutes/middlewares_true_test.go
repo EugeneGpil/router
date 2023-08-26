@@ -30,9 +30,7 @@ func Test_should_proceed_all_middlewares_and_callback(t *testing.T) {
 }
 
 func addRoute() {
-	callback := func(writer http.ResponseWriter, request *http.Request) {
-		writer.Write(callbackMessage)
-	}
+	callback := tests.GetHttpHandler(callbackMessage)
 
 	middlewares := tests.GetMiddlewares([][]byte{
 		middleware1Message,
