@@ -36,10 +36,10 @@ func findRouteWithMatchingHttpMethodAndRun(routes []types.Route, writer http.Res
 }
 
 func run(route types.Route, writer http.ResponseWriter, request *http.Request) {
-	for _, callback := range route.Middlewares {
-		callbackReslut := callback(writer, request)
+	for _, middleware := range route.Middlewares {
+		middlewareReslut := middleware(writer, request)
 
-		if callbackReslut == false {
+		if middlewareReslut == false {
 			return
 		}
 	}

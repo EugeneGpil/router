@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/EugeneGpil/router/app/modules/add"
 	"github.com/EugeneGpil/router/app/modules/define"
 	"github.com/EugeneGpil/router/app/ship/utils/tests"
 	"github.com/EugeneGpil/tester"
@@ -22,21 +21,14 @@ var mux = http.NewServeMux()
 func Test_should_proceed_all_middlewares_and_callback(t *testing.T) {
 	tester.SetTester(t)
 
-	addRoute()
+	tests.AddRouteWithMiddlewares(url, callbackMessage, [][]byte{
+		middleware1Message,
+		middleware2Message,
+	})
 
 	define.DefineRoutes(mux)
 
 	assertCallback()
-}
-
-func addRoute() {
-	callback := tests.GetHttpHandler(callbackMessage)
-
-	middlewares := tests.GetMiddlewares([][]byte{
-		middleware1Message,
-		middleware2Message,
-	})
-	add.AddRouteWitMiddlewares(http.MethodGet, url, callback, middlewares)
 }
 
 func assertCallback() {
