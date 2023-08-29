@@ -1,15 +1,50 @@
 package AddRouteWithMiddlewares
 
 import (
+	"net/http"
 	"testing"
 
+	"github.com/EugeneGpil/router/app/ship/utils/tests"
+	"github.com/EugeneGpil/router/app/ship/vars/routes"
 	"github.com/EugeneGpil/tester"
 )
 
 var url = ""
-var handlerMessage = "hello handler"
-var middlewareMessage = "hello middleware"
+var handlerMessage = []byte("hello handler")
+var middlewareMessage = []byte("hello middleware")
 
 func Test_should_add_route_with_middlewares(t *testing.T) {
 	tester.SetTester(t)
+
+	tests.AddRouteWithMiddlewares(url, handlerMessage, [][]byte{
+		middlewareMessage,
+	})
+
+	assertPrimitives()
+}
+
+func assertPrimitives() {
+	routes := routes.GetAll()
+
+	tester.AssertLen(routes, 1)
+
+	route := routes[0]
+
+	tester.AssertSame(route.Method, http.MethodGet)
+	tester.AssertSame(route.Url, url)
+	tester.AssertNotNil(route.Callback)
+	tester.AssertLen(route.Middlewares, 1)
+}
+
+func assertCallback() {
+	testResponseWriter := tester.GetTestResponseWriter()
+
+	routes.GetAll()[0].Callback(&testResponseWriter, nil)
+
+	messages := testResponseWriter.GetMessages()
+
+	tester.AssertLen(messages, 2)
+
+	tester.AssertSame(messages[0], middlewareMessage)
+	tester.AssertSame(messages[1], handlerMessage)
 }
