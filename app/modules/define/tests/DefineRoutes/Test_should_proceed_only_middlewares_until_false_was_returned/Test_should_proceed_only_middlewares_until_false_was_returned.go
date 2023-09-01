@@ -10,8 +10,6 @@ import (
 	"github.com/EugeneGpil/router/app/ship/types"
 	"github.com/EugeneGpil/router/app/ship/utils/tests"
 	"github.com/EugeneGpil/tester"
-
-	netUrl "net/url"
 )
 
 func Test_should_proceed_only_middlewares_until_false_was_returned(t *testing.T) {
@@ -21,7 +19,10 @@ func Test_should_proceed_only_middlewares_until_false_was_returned(t *testing.T)
 
 	define.DefineRoutes(DefineRoutes.Mux)
 
-	assertCallback()
+	DefineRoutes.AssertWriterMessages([][]byte{
+		DefineRoutes.Middleware1Message,
+		DefineRoutes.Middleware2Message,
+	})
 }
 
 func addRoute() {
@@ -36,27 +37,4 @@ func addRoute() {
 		middleware2,
 		middleware3,
 	})
-}
-
-func assertCallback() {
-	urlObj, err := netUrl.Parse("/")
-	tester.AssertNil(err)
-
-	request := http.Request{
-		Method: http.MethodGet,
-		URL:    urlObj,
-	}
-
-	handler, _ := DefineRoutes.Mux.Handler(&request)
-
-	writer := tester.GetTestResponseWriter()
-
-	handler.ServeHTTP(writer, &request)
-
-	messages := writer.GetMessages()
-
-	tester.AssertLen(messages, 2)
-
-	tester.AssertSame(messages[0], DefineRoutes.Middleware1Message)
-	tester.AssertSame(messages[1], DefineRoutes.Middleware2Message)
 }
