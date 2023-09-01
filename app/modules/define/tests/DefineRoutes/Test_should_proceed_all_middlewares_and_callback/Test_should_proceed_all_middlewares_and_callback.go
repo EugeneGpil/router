@@ -1,32 +1,26 @@
-package DefineRoutes
+package Test_should_proceed_all_middlewares_and_callback
 
 import (
 	"net/http"
 	"testing"
 
 	"github.com/EugeneGpil/router/app/modules/define"
+	"github.com/EugeneGpil/router/app/modules/define/tests/DefineRoutes"
 	"github.com/EugeneGpil/router/app/ship/utils/tests"
 	"github.com/EugeneGpil/tester"
 
 	netUrl "net/url"
 )
 
-var middleware1Message = []byte("Hello middleware1")
-var middleware2Message = []byte("Hello middleware2")
-var callbackMessage = []byte("Hello callback")
-
-var url = ""
-var mux = http.NewServeMux()
-
 func Test_should_proceed_all_middlewares_and_callback(t *testing.T) {
 	tester.SetTester(t)
 
-	tests.AddRouteWithMiddlewares(url, callbackMessage, [][]byte{
-		middleware1Message,
-		middleware2Message,
+	tests.AddRouteWithMiddlewares(DefineRoutes.Url, DefineRoutes.CallbackMessage, [][]byte{
+		DefineRoutes.Middleware1Message,
+		DefineRoutes.Middleware2Message,
 	})
 
-	define.DefineRoutes(mux)
+	define.DefineRoutes(DefineRoutes.Mux)
 
 	assertCallback()
 }
@@ -40,7 +34,7 @@ func assertCallback() {
 		URL:    urlObj,
 	}
 
-	handler, _ := mux.Handler(&request)
+	handler, _ := DefineRoutes.Mux.Handler(&request)
 
 	writer := tester.GetTestResponseWriter()
 
@@ -50,7 +44,7 @@ func assertCallback() {
 
 	tester.AssertLen(messages, 3)
 
-	tester.AssertSame(messages[0], middleware1Message)
-	tester.AssertSame(messages[1], middleware2Message)
-	tester.AssertSame(messages[2], callbackMessage)
+	tester.AssertSame(messages[0], DefineRoutes.Middleware1Message)
+	tester.AssertSame(messages[1], DefineRoutes.Middleware2Message)
+	tester.AssertSame(messages[2], DefineRoutes.CallbackMessage)
 }
