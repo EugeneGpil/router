@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/EugeneGpil/router/app/modules/add"
+	"github.com/EugeneGpil/router/app/modules/define"
 	"github.com/EugeneGpil/router/app/modules/define/tests/DefineRoutes"
 	"github.com/EugeneGpil/router/app/ship/types"
 	"github.com/EugeneGpil/router/app/ship/utils/tests"
@@ -15,6 +16,8 @@ func Test_should_proceed_only_middlewares(t *testing.T) {
 	tester.SetTester(t)
 
 	addRoute()
+
+	define.DefineRoutes(DefineRoutes.Mux)
 
 	DefineRoutes.AssertWriterMessages([][]byte{
 		DefineRoutes.Middleware1Message,
