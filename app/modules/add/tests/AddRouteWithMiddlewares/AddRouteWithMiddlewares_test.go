@@ -16,7 +16,7 @@ var middlewareMessage = []byte("hello middleware")
 func Test_should_add_route_with_middlewares(t *testing.T) {
 	tester.SetTester(t)
 
-	tests.AddRouteWithMiddlewares(url, handlerMessage, [][]byte{
+	tests.AddRouteWithMiddlewares(handlerMessage, [][]byte{
 		middlewareMessage,
 	})
 

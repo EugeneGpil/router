@@ -7,8 +7,13 @@ import (
 	"github.com/EugeneGpil/router/app/modules/define"
 )
 
-func AddRoute(method string, url string, handler func(http.ResponseWriter, *http.Request)) {
-	add.AddRoute(method, url, handler)
+func AddRoute(
+	method string,
+	url string,
+	handler func(http.ResponseWriter, *http.Request),
+	name string,
+) {
+	add.AddRoute(method, url, handler, name)
 }
 
 func DefineRoutes(mux *http.ServeMux) {

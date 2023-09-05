@@ -12,7 +12,7 @@ import (
 func Test_should_proceed_all_middlewares_and_callback(t *testing.T) {
 	tester.SetTester(t)
 
-	tests.AddRouteWithMiddlewares(DefineRoutes.Url, DefineRoutes.CallbackMessage, [][]byte{
+	tests.AddRouteWithMiddlewares(DefineRoutes.CallbackMessage, [][]byte{
 		DefineRoutes.Middleware1Message,
 		DefineRoutes.Middleware2Message,
 	})

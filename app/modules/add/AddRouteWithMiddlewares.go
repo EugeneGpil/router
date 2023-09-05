@@ -12,6 +12,7 @@ func AddRouteWitMiddlewares(
 	method string,
 	url string,
 	callback func(http.ResponseWriter, *http.Request),
+	name string,
 	middlewares []types.Middleware,
 ) {
 	trimmedUrl := strings.Trim(url, "/")
@@ -20,6 +21,7 @@ func AddRouteWitMiddlewares(
 		Method:      method,
 		Url:         trimmedUrl,
 		Callback:    callback,
+		Name:        name,
 		Middlewares: middlewares,
 	}
 

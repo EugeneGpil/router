@@ -8,4 +8,6 @@ var Middleware3Message = []byte("Hello middleware3")
 var CallbackMessage = []byte("Hello callback")
 
 var Url = ""
+var RouteName = "route.name"
+
 var Mux = http.NewServeMux()

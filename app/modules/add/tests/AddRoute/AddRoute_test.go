@@ -12,6 +12,7 @@ import (
 
 var helloMessage = []byte("Hello")
 var url = ""
+var routeName = "route.name"
 
 func Test_should_add_route(t *testing.T) {
 	tester.SetTester(t)
@@ -26,7 +27,7 @@ func Test_should_add_route(t *testing.T) {
 func addRoute() {
 	callback := tests.GetHttpHandler(helloMessage)
 
-	add.AddRoute(http.MethodGet, url, callback)
+	add.AddRoute(http.MethodGet, url, callback, routeName)
 }
 
 func assertPrimitives() {

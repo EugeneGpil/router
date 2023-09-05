@@ -28,13 +28,25 @@ func Test_should_proceed_only_middlewares_until_false_was_returned(t *testing.T)
 func addRoute() {
 	callback := tests.GetHttpHandler(DefineRoutes.CallbackMessage)
 
+	middlewares := getMiddlewares()
+
+	add.AddRouteWitMiddlewares(
+		http.MethodGet,
+		DefineRoutes.Url,
+		callback,
+		DefineRoutes.RouteName,
+		middlewares,
+	)
+}
+
+func getMiddlewares() []types.Middleware {
 	middleware1 := tests.GetMiddleware(DefineRoutes.Middleware1Message)
 	middleware2 := tests.GetMiddlewareFalse(DefineRoutes.Middleware2Message)
 	middleware3 := tests.GetMiddleware(DefineRoutes.Middleware3Message)
 
-	add.AddRouteWitMiddlewares(http.MethodGet, DefineRoutes.Url, callback, []types.Middleware{
+	return []types.Middleware{
 		middleware1,
 		middleware2,
 		middleware3,
-	})
+	}
 }

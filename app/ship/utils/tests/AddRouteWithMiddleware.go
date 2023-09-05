@@ -6,9 +6,9 @@ import (
 	"github.com/EugeneGpil/router/app/modules/add"
 )
 
-func AddRouteWithMiddlewares(url string, handlerMessage []byte, middlewareMessages [][]byte) {
+func AddRouteWithMiddlewares(handlerMessage []byte, middlewareMessages [][]byte) {
 	callback := GetHttpHandler(handlerMessage)
 
 	middlewares := GetMiddlewares(middlewareMessages)
-	add.AddRouteWitMiddlewares(http.MethodGet, url, callback, middlewares)
+	add.AddRouteWitMiddlewares(http.MethodGet, DefaultUrl, callback, DefaultName, middlewares)
 }
