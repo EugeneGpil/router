@@ -35,7 +35,7 @@ func assertPrimitives() {
 
 	tester.AssertLen(routes, 1)
 
-	route := routes[0]
+	route := routes[routeName]
 
 	tester.AssertSame(route.Method, http.MethodGet)
 	tester.AssertSame(route.Url, url)
@@ -46,7 +46,7 @@ func assertPrimitives() {
 func assertCallback() {
 	testResponseWriter := tester.GetTestResponseWriter()
 
-	routes.GetAll()[0].Callback(&testResponseWriter, nil)
+	routes.GetAll()[routeName].Callback(&testResponseWriter, nil)
 
 	responseMessage := testResponseWriter.GetMessages()[0]
 

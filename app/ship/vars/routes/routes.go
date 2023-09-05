@@ -2,12 +2,12 @@ package routes
 
 import "github.com/EugeneGpil/router/app/ship/types"
 
-var routes []*types.Route
+var routes = make(map[string]*types.Route)
 
 func Add(route types.Route) {
-	routes = append(routes, &route)
+	routes[route.Name] = &route
 }
 
-func GetAll() []*types.Route {
+func GetAll() map[string]*types.Route {
 	return routes
 }
