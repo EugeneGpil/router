@@ -1,4 +1,4 @@
-package DefineRoutes
+package should_proceed_only_middlewares_until_false_was_returned
 
 import (
 	"net/http"

@@ -1,4 +1,4 @@
-package Test_should_proceed_all_middlewares_and_callback
+package should_proceed_all_middlewares_and_callback
 
 import (
 	"testing"
