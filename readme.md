@@ -13,12 +13,18 @@ import (
 	"github.com/EugeneGpil/router"
 )
 
-func main() {
-	router.AddRoute(http.MethodGet, "hello/world", func(writer http.ResponseWriter, request *http.Request) {
-		writer.Write([]byte("Hello World!\n"))
-	})
+var method = http.MethodGet
+var url = "hello/world"
+var name = "hello.world"
 
-	mux := http.NewServeMux()
+var handler = func(writer http.ResponseWriter, request *http.Request) {
+	writer.Write([]byte("Hello World!\n"))
+}
+
+var mux = http.NewServeMux()
+
+func main() {
+	router.AddRoute(method, url, handler, name)
 
 	router.DefineRoutes(mux)
 
