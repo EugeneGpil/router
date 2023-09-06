@@ -1,4 +1,4 @@
-package AddRouteWithMiddlewares
+package should_add_route_with_middlewares
 
 import (
 	"net/http"

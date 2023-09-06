@@ -11,3 +11,8 @@ type Route struct {
 	Name        string
 	Middlewares []Middleware
 }
+
+type SimpleRoute struct {
+	Method string
+	Url    string
+}

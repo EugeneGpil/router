@@ -6,10 +6,11 @@ import (
 
 	"github.com/EugeneGpil/router"
 	"github.com/EugeneGpil/router/app/modules/add"
-	"github.com/EugeneGpil/router/app/modules/define/tests/DefineRoutes"
 	"github.com/EugeneGpil/router/app/ship/types"
 	"github.com/EugeneGpil/router/app/ship/utils/tests"
 	"github.com/EugeneGpil/tester"
+
+	defineTests "github.com/EugeneGpil/router/app/modules/define/tests"
 )
 
 func Test_should_proceed_only_middlewares(t *testing.T) {
@@ -17,33 +18,33 @@ func Test_should_proceed_only_middlewares(t *testing.T) {
 
 	addRoute()
 
-	router.DefineRoutes(DefineRoutes.Mux)
+	router.DefineRoutes(defineTests.Mux)
 
-	DefineRoutes.AssertWriterMessages([][]byte{
-		DefineRoutes.Middleware1Message,
-		DefineRoutes.Middleware2Message,
-		DefineRoutes.Middleware3Message,
+	defineTests.AssertWriterMessages([][]byte{
+		defineTests.Middleware1Message,
+		defineTests.Middleware2Message,
+		defineTests.Middleware3Message,
 	})
 }
 
 func addRoute() {
-	callback := tests.GetHttpHandler(DefineRoutes.CallbackMessage)
+	callback := tests.GetHttpHandler(defineTests.CallbackMessage)
 
 	middlewares := getMiddlewares()
 
 	add.AddRouteWithMiddlewares(
 		http.MethodGet,
-		DefineRoutes.Url,
+		defineTests.Url,
 		callback,
-		DefineRoutes.RouteName,
+		defineTests.RouteName,
 		middlewares,
 	)
 }
 
 func getMiddlewares() []types.Middleware {
-	middleware1 := tests.GetMiddleware(DefineRoutes.Middleware1Message)
-	middleware2 := tests.GetMiddleware(DefineRoutes.Middleware2Message)
-	middleware3 := tests.GetMiddlewareFalse(DefineRoutes.Middleware3Message)
+	middleware1 := tests.GetMiddleware(defineTests.Middleware1Message)
+	middleware2 := tests.GetMiddleware(defineTests.Middleware2Message)
+	middleware3 := tests.GetMiddlewareFalse(defineTests.Middleware3Message)
 
 	return []types.Middleware{
 		middleware1,

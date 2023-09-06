@@ -1,4 +1,4 @@
-package DefineRoutes
+package tests
 
 import (
 	"net/http"

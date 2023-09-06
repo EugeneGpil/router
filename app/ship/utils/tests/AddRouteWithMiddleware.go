@@ -10,5 +10,5 @@ func AddRouteWithMiddlewares(handlerMessage []byte, middlewareMessages [][]byte)
 	callback := GetHttpHandler(handlerMessage)
 
 	middlewares := GetMiddlewares(middlewareMessages)
-	router.AddRouteWithMiddlewares(http.MethodGet, DefaultUrl, callback, middlewares, DefaultName)
+	router.AddRouteWithMiddlewares(http.MethodGet, DefaultUrl, callback, DefaultName, middlewares)
 }

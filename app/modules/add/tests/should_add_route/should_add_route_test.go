@@ -1,4 +1,4 @@
-package AddRoute
+package should_add_route
 
 import (
 	"net/http"

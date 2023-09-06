@@ -5,6 +5,7 @@ import (
 
 	"github.com/EugeneGpil/router/app/modules/add"
 	"github.com/EugeneGpil/router/app/modules/define"
+	"github.com/EugeneGpil/router/app/modules/get"
 	"github.com/EugeneGpil/router/app/ship/types"
 )
 
@@ -21,10 +22,14 @@ func AddRouteWithMiddlewares(
 	method string,
 	url string,
 	handler types.HttpHandler,
-	middlewares []types.Middleware,
 	name string,
+	middlewares []types.Middleware,
 ) {
 	add.AddRouteWithMiddlewares(method, url, handler, name, middlewares)
+}
+
+func ByName(routeName string) types.SimpleRoute {
+	return get.ByName(routeName)
 }
 
 func DefineRoutes(mux *http.ServeMux) {
