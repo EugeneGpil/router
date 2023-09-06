@@ -3,12 +3,12 @@ package tests
 import (
 	"net/http"
 
-	"github.com/EugeneGpil/router/app/modules/add"
+	"github.com/EugeneGpil/router"
 )
 
 func AddRouteWithMiddlewares(handlerMessage []byte, middlewareMessages [][]byte) {
 	callback := GetHttpHandler(handlerMessage)
 
 	middlewares := GetMiddlewares(middlewareMessages)
-	add.AddRouteWitMiddlewares(http.MethodGet, DefaultUrl, callback, DefaultName, middlewares)
+	router.AddRouteWithMiddlewares(http.MethodGet, DefaultUrl, callback, middlewares, DefaultName)
 }

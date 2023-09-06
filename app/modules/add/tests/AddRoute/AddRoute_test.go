@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/EugeneGpil/router/app/modules/add"
+	"github.com/EugeneGpil/router"
 	"github.com/EugeneGpil/router/app/ship/utils/tests"
 	"github.com/EugeneGpil/router/app/ship/vars/routes"
 	"github.com/EugeneGpil/tester"
@@ -27,7 +27,7 @@ func Test_should_add_route(t *testing.T) {
 func addRoute() {
 	callback := tests.GetHttpHandler(helloMessage)
 
-	add.AddRoute(http.MethodGet, url, callback, routeName)
+	router.AddRoute(http.MethodGet, url, callback, routeName)
 }
 
 func assertPrimitives() {

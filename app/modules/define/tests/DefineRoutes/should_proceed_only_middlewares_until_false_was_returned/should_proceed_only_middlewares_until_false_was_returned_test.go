@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/EugeneGpil/router"
 	"github.com/EugeneGpil/router/app/modules/add"
-	"github.com/EugeneGpil/router/app/modules/define"
 	"github.com/EugeneGpil/router/app/modules/define/tests/DefineRoutes"
 	"github.com/EugeneGpil/router/app/ship/types"
 	"github.com/EugeneGpil/router/app/ship/utils/tests"
@@ -17,7 +17,7 @@ func Test_should_proceed_only_middlewares_until_false_was_returned(t *testing.T)
 
 	addRoute()
 
-	define.DefineRoutes(DefineRoutes.Mux)
+	router.DefineRoutes(DefineRoutes.Mux)
 
 	DefineRoutes.AssertWriterMessages([][]byte{
 		DefineRoutes.Middleware1Message,
@@ -30,7 +30,7 @@ func addRoute() {
 
 	middlewares := getMiddlewares()
 
-	add.AddRouteWitMiddlewares(
+	add.AddRouteWithMiddlewares(
 		http.MethodGet,
 		DefineRoutes.Url,
 		callback,

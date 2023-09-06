@@ -3,7 +3,7 @@ package should_proceed_all_middlewares_and_callback
 import (
 	"testing"
 
-	"github.com/EugeneGpil/router/app/modules/define"
+	"github.com/EugeneGpil/router"
 	"github.com/EugeneGpil/router/app/modules/define/tests/DefineRoutes"
 	"github.com/EugeneGpil/router/app/ship/utils/tests"
 	"github.com/EugeneGpil/tester"
@@ -17,7 +17,7 @@ func Test_should_proceed_all_middlewares_and_callback(t *testing.T) {
 		DefineRoutes.Middleware2Message,
 	})
 
-	define.DefineRoutes(DefineRoutes.Mux)
+	router.DefineRoutes(DefineRoutes.Mux)
 
 	DefineRoutes.AssertWriterMessages([][]byte{
 		DefineRoutes.Middleware1Message,

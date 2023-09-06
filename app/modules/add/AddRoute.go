@@ -1,18 +1,16 @@
 package add
 
 import (
-	"net/http"
-
 	"github.com/EugeneGpil/router/app/ship/types"
 )
 
 func AddRoute(
 	method string,
 	url string,
-	callback func(http.ResponseWriter, *http.Request),
+	callback types.HttpHandler,
 	name string,
 ) {
 	middlewares := make([]types.Middleware, 0)
 
-	AddRouteWitMiddlewares(method, url, callback, name, middlewares)
+	AddRouteWithMiddlewares(method, url, callback, name, middlewares)
 }
