@@ -10,6 +10,6 @@ func ByName(routeName string) types.SimpleRoute {
 
 	return types.SimpleRoute{
 		Method: route.Method,
-		Url:    route.Url + "/",
+		Url:    "/" + route.Url,
 	}
 }
