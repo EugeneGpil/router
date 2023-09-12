@@ -5,6 +5,8 @@ import (
 	"net/url"
 
 	"github.com/EugeneGpil/tester"
+
+	httpTester "github.com/EugeneGpil/httpTester"
 )
 
 func AssertWriterMessages(messages [][]byte) {
@@ -18,7 +20,7 @@ func AssertWriterMessages(messages [][]byte) {
 
 	handler, _ := Mux.Handler(&request)
 
-	writer := tester.GetTestResponseWriter()
+	writer := httpTester.GetTestResponseWriter()
 
 	handler.ServeHTTP(writer, &request)
 

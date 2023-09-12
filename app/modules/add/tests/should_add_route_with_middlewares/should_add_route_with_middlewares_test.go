@@ -7,6 +7,8 @@ import (
 	"github.com/EugeneGpil/router/app/ship/utils/tests"
 	"github.com/EugeneGpil/router/app/ship/vars/routes"
 	"github.com/EugeneGpil/tester"
+
+	httpTester "github.com/EugeneGpil/httpTester"
 )
 
 var url = ""
@@ -37,7 +39,7 @@ func assertPrimitives() {
 }
 
 func assertCallback() {
-	testResponseWriter := tester.GetTestResponseWriter()
+	testResponseWriter := httpTester.GetTestResponseWriter()
 
 	routes.GetAll()[tests.DefaultName].Callback(&testResponseWriter, nil)
 
