@@ -6,7 +6,7 @@ ARG ID_USER=1000
 ARG ID_GROUP=1000
 ARG GOLANG_VERSION=1.20.4
 RUN \
-    echo "creating group and user" &&\ 
+    echo "creating group and user" &&\
     groupadd -g ${ID_GROUP} app &&\
     useradd -u ${ID_USER} -m app -g app &&\
     usermod -a -G www-data app &&\
