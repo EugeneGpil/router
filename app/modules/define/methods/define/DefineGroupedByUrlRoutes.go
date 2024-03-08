@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/EugeneGpil/getFormattedUrls"
+	"github.com/EugeneGpil/response"
 	"github.com/EugeneGpil/router/app/ship/types"
 )
 
@@ -19,30 +20,32 @@ func DefineGroupedByUrlRoutes(groupedByUrlRoutes map[string][]types.Route, mux *
 
 func defineRoutesWithDifferentHttpMethodsOnOneUrl(url string, routes []types.Route, mux *http.ServeMux) {
 	mux.HandleFunc(url, func(writer http.ResponseWriter, request *http.Request) {
-		findRouteWithMatchingHttpMethodAndRun(routes, writer, request)
+		response := response.New(writer)
+
+		findRouteWithMatchingHttpMethodAndRun(routes, response, request)
 	})
 }
 
-func findRouteWithMatchingHttpMethodAndRun(routes []types.Route, writer http.ResponseWriter, request *http.Request) {
+func findRouteWithMatchingHttpMethodAndRun(routes []types.Route, response response.Response, request *http.Request) {
 	for _, route := range routes {
 		if request.Method == route.Method {
-			run(route, writer, request)
+			run(route, response, request)
 
 			return
 		}
 	}
 
-	writer.WriteHeader(http.StatusNotFound)
+	response.SetStatusCode(http.StatusNotFound)
 }
 
-func run(route types.Route, writer http.ResponseWriter, request *http.Request) {
+func run(route types.Route, response response.Response, request *http.Request) {
 	for _, middleware := range route.Middlewares {
-		middlewareReslut := middleware(writer, request)
+		middlewareResult := middleware(response, request)
 
-		if middlewareReslut == false {
+		if !middlewareResult {
 			return
 		}
 	}
 
-	route.Callback(writer, request)
+	route.Callback(response, request)
 }

@@ -1,9 +1,13 @@
 package tests
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/EugeneGpil/response"
+)
 
 var DefaultUrl = "/"
 
 var DefaultName = "default.name"
 
-var DefaultCallback = func(http.ResponseWriter, *http.Request) {}
+var DefaultCallback = func(response.Response, *http.Request) {}

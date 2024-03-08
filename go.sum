@@ -1,6 +1,10 @@
 github.com/EugeneGpil/getFormattedUrls v0.1.0 h1:1lvL6rfRJY8xU0DQrypaHbdUgN/b6ACl5SXMf58sKIQ=
 github.com/EugeneGpil/getFormattedUrls v0.1.0/go.mod h1:qe8oqvDy0EDAb8prx4cdJGVxHT5L6+kotLjmqb+/w24=
-github.com/EugeneGpil/httpTester v0.0.1 h1:pZN2Zs8gCnSdgeUxUjQMvMvw0XekOIxchLDJjYIrEwA=
-github.com/EugeneGpil/httpTester v0.0.1/go.mod h1:3pC5cCNaIRgDql/vnmWyLPNBJ/Hn3NEYxjcIOUnjly0=
-github.com/EugeneGpil/tester v0.0.3 h1:xkU8l7a9AH2+MpelhBUIyCYxrDoILv9O0XIPdNPNwQE=
-github.com/EugeneGpil/tester v0.0.3/go.mod h1:NMXHQcI+RHH36zBbS4AswGnHXvan8Lms89uW+gfYfzo=
+github.com/EugeneGpil/httpTester v0.0.9 h1:djFIUnCewjN9NCb5XcsT/zesG9IBSdzt9X5C2Fd+OIg=
+github.com/EugeneGpil/httpTester v0.0.9/go.mod h1:d8Wdrme3/ZrSpnvPxnMEqb/bpuSJulfQ+CTwivW6kgw=
+github.com/EugeneGpil/response v0.0.7 h1:5uFryNPn0TjpbquRzfnz1QuqTy03oPAV0ydn4PWRu+Q=
+github.com/EugeneGpil/response v0.0.7/go.mod h1:MJ/bxKoJSKATUfJMw21tdkkUu/fUGt+lRBRnB9jfjWc=
+github.com/EugeneGpil/responseWriter v0.0.2 h1:CuQFoARKfud5r/7K9AnpB847Tr3e0BGhMF1gscjsqLc=
+github.com/EugeneGpil/responseWriter v0.0.2/go.mod h1:G46dIm82OGMuCeaeNugtYJNL9daCnrldHE9cLiz/Qc8=
+github.com/EugeneGpil/tester v0.0.4 h1:UI0fGoJxo5QM8B1620Dv5nUTm6I6ICRK380Sq/r+9ag=
+github.com/EugeneGpil/tester v0.0.4/go.mod h1:NMXHQcI+RHH36zBbS4AswGnHXvan8Lms89uW+gfYfzo=

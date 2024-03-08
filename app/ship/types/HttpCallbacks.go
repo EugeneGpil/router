@@ -1,6 +1,10 @@
 package types
 
-import "net/http"
+import (
+	"net/http"
 
-type HttpHandler func(http.ResponseWriter, *http.Request)
-type Middleware func(http.ResponseWriter, *http.Request) bool
+	"github.com/EugeneGpil/response"
+)
+
+type HttpHandler func(response.Response, *http.Request)
+type Middleware func(response.Response, *http.Request) bool

@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/EugeneGpil/response"
 	"github.com/EugeneGpil/router"
 	"github.com/EugeneGpil/router/app/ship/utils/tests"
 	"github.com/EugeneGpil/router/app/ship/vars/routes"
@@ -48,7 +49,9 @@ func assertPrimitives() {
 func assertCallback() {
 	testResponseWriter := httpTester.GetTestResponseWriter()
 
-	routes.GetAll()[routeName].Callback(&testResponseWriter, nil)
+	response := response.New(testResponseWriter)
+
+	routes.GetAll()[routeName].Callback(response, nil)
 
 	responseMessage := testResponseWriter.GetMessages()[0]
 

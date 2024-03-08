@@ -3,6 +3,7 @@ package tests
 import (
 	"net/http"
 
+	"github.com/EugeneGpil/response"
 	"github.com/EugeneGpil/router/app/ship/types"
 )
 
@@ -15,8 +16,8 @@ func GetMiddlewareFalse(message []byte) types.Middleware {
 }
 
 func getMiddleware(message []byte, returnValue bool) types.Middleware {
-	middleware := func(writer http.ResponseWriter, request *http.Request) bool {
-		writer.Write(message)
+	middleware := func(response response.Response, request *http.Request) bool {
+		response.Write(message)
 
 		return returnValue
 	}
