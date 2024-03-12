@@ -1,8 +1,7 @@
 package tests
 
 import (
-	"net/http"
-
+	"github.com/EugeneGpil/request"
 	"github.com/EugeneGpil/response"
 	"github.com/EugeneGpil/router/app/ship/types"
 )
@@ -16,11 +15,11 @@ func GetMiddlewareFalse(message []byte) types.Middleware {
 }
 
 func getMiddleware(message []byte, returnValue bool) types.Middleware {
-	middleware := func(response response.Response, request *http.Request) bool {
+	middleware := types.Middleware(func(response response.Response, request *request.Request) bool {
 		response.Write(message)
 
 		return returnValue
-	}
+	})
 
 	return types.Middleware(middleware)
 }

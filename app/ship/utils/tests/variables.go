@@ -1,13 +1,13 @@
 package tests
 
 import (
-	"net/http"
-
+	"github.com/EugeneGpil/request"
 	"github.com/EugeneGpil/response"
+	"github.com/EugeneGpil/router/app/ship/types"
 )
 
 var DefaultUrl = "/"
 
 var DefaultName = "default.name"
 
-var DefaultCallback = func(response.Response, *http.Request) {}
+var DefaultCallback = types.HttpHandler(func(response.Response, *request.Request) {})
